@@ -9,9 +9,20 @@
 </script>
 
 <!-- Este es un comentario: Aquí van las etiquetas de HTML -->
-<h1>Hello {name}!</h1>
+<h1>Juego de Memoria</h1>
 <table>
 	<tbody>
+		{#each renglonNum as renglon}
+		<!-- Aquí se itera sobre cada renglon-->
+			<tr>
+				<td>
+					<RenglonDeTarjetas renglonDeCadenas = {renglon}/>
+				</td>
+			</tr>
+		{/each}
+
+
+<!-- 
 		<tr>
 		<td>
 			<RenglonDeTarjetas renglonDeCadenas = {renglonNum[0]}/>
@@ -31,9 +42,13 @@
 		<td>
 			<RenglonDeTarjetas renglonDeCadenas = {renglonNum[3]}/>
 		</td>
-	</tr>
+	</tr>-->
 	</tbody>
-	
-
-
 </table>
+
+<style>
+	tr, td {
+	height: 110px;
+	display:flex;
+}
+</style>
