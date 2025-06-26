@@ -3,14 +3,16 @@
 	let {propCadena, primerBoton= $bindable()} = $props();
 	let esteBoton; // Define esteBoton como un elemento HTMLButtonElement
 	console.log(propCadena);
-	//console.log(primerBoton.textContent);
+	console.log(primerBoton !== null);
 	 	function convierteANumero(cad) {
 		return cad.length > 2 ? cad[0]*cad.slice(2) : Number.parseInt(cad); // Convierte la cadena a númer0
 	}
 
 	function destapar() {
 		contenido = contenido === "" ? propCadena: "";
-		if (!(primerBoton === null)) { // Verifica si primerBoton ya ha sido asignado
+		console.log(propCadena);
+		if (primerBoton !== null) { // Verifica si primerBoton ya ha sido asignado
+			console.log(primerBoton.contenido);
 			let numPB = convierteANumero(primerBoton.textContent);
 			let numEste = convierteANumero(propCadena);
 			if (numPB === numEste) {
@@ -18,9 +20,11 @@
 				esteBoton.disabled = true; // Deshabilita este botón también
 			} else {
 				setTimeout(() => {
-					primerBoton.textContent = ""; // Limpia el contenido del primer botón después de un breve retraso
-					esteBoton.textContent = ""; // Limpia el contenido de este botón también
+					contenido = ""; // Limpia el contenido de este botón también	
+					primerBoton.innerText = ""; // Limpia el contenido del primer botón después de un breve retraso
 					primerBoton.disabled = false; // Habilita el primer botón nuevamente
+					esteBoton.disabled = false; // Habilita este botón nuevamente
+					primerBoton = null; // Reinicia primerBoton a null para permitir un nuevo par
 				}, 1000); // Espera 1 segundo antes de limpiar los botones
 			} 
 		}
@@ -32,8 +36,7 @@
 </script>
 
 <button bind:this={esteBoton} onclick ={destapar}>
-	{contenido}
-
+	{contenido === propCadena ? contenido : ""}
 </button>
 
 
