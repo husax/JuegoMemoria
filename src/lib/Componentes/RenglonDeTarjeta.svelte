@@ -2,13 +2,19 @@
 	import Tarjeta from "./Tarjeta.svelte";
 	let {renglonDeCadenas, primerBoton=$bindable() }= $props();  // define renglonDeCadenas como un atributo
 	console.log(renglonDeCadenas);
-	//let primerBoton= $state(null); // permite que el componente padre controle el estado del primer clic
+	let card= $state(); // Variable para almacenar la referencia al componente Tarjeta
+	function asociaTarjeta (){
+		primerBoton = card; // Asigna la tarjeta actual como primer botón
+	}
+
 </script>
 
 {#each renglonDeCadenas as cadena	}
 	<!-- Aquí se itera sobre cada cadena en el arreglo renglonDeCadenas -->
 	<!-- y se crea una Tarjeta para cada una -->
-	<Tarjeta propCadena = {cadena}  bind:primerBoton={primerBoton}/>
+	<Tarjeta bind:this={card}  propCadena = {cadena}
+		bind:primerBoton={primerBoton} {asociaTarjeta}
+		/>
 {/each}
 
 
