@@ -1,7 +1,6 @@
 <script>
 	import RenglonDeTarjetas from "$lib/Componentes/RenglonDeTarjeta.svelte";
-	let primerBoton= null; 
-	let name = 'world';
+	let primerBoton= $state(null); 
 	let numeros = ["2x1","2","2x2","4","2x3","6","2x4","8","2x5","10","2x6","12","2x7","14","2x8","16", "2x9","18", "2x10", "20"];
   numeros = numeros.sort(()=>{return Math.random()-0.5});
   console.log(numeros);
@@ -10,45 +9,31 @@
 </script>
 
 <!-- Este es un comentario: Aquí van las etiquetas de HTML -->
-<h1>Juego de Memoria</h1>
+
 <table>
+	<thead>
+		<tr>
+			<th>
+				<h1>Juego de Memoria</h1>
+			</th>
+		</tr>
+	</thead>
 	<tbody>
+			<!-- Aquí se itera sobre cada renglon-->
 		{#each renglonNum as renglon}
-		<!-- Aquí se itera sobre cada renglon-->
 			<tr>
 				<td>
-					<RenglonDeTarjetas renglonDeCadenas = {renglon} bind:primerBoton={primerBoton}/>
+					<RenglonDeTarjetas renglonDeCadenas = {renglon} bind:primBot={primerBoton}/>
 				</td>
 			</tr>
 		{/each}
-
-
-<!-- 
-		<tr>
-		<td>
-			<RenglonDeTarjetas renglonDeCadenas = {renglonNum[0]}/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<RenglonDeTarjetas renglonDeCadenas = {renglonNum[1]}/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<RenglonDeTarjetas renglonDeCadenas = {renglonNum[2]}/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<RenglonDeTarjetas renglonDeCadenas = {renglonNum[3]}/>
-		</td>
-	</tr>-->
 	</tbody>
 </table>
 
+	
+
 <style>
-	tr, td {
+td {
 	height: 110px;
 	display:flex;
 }
